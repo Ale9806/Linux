@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Regular Expressions - Linux tutorial</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Linux tutorial</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Tutorials <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../help/" class="dropdown-item">Self help</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Regular Expressions</a>
+</li>
+                                    
+<li>
+    <a href="../make/" class="dropdown-item">Make Files</a>
+</li>
+                                    
+<li>
+    <a href="../custom/" class="dropdown-item">Customizing</a>
+</li>
+                                    
+<li>
+    <a href="../bash/" class="dropdown-item">Bash Scripting</a>
+</li>
+                                    
+<li>
+    <a href="../ssh/" class="dropdown-item">Secure Shell</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../help/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../make/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#regular-expressions" class="nav-link">Regular expressions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#grep" class="nav-link">GREP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#egrep" class="nav-link">EGREP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#find" class="nav-link">FIND</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#metacharacters" class="nav-link">Metacharacters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#quantifiers" class="nav-link">Quantifiers</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#sets" class="nav-link">Sets</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#wrap-up" class="nav-link">Wrap up</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#practical-examples" class="nav-link">Practical examples:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#character-search-example" class="nav-link">Character search example</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#quintifier-search-example" class="nav-link">Quintifier search example</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#sets-search-exmaple" class="nav-link">Sets search exmaple</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="regular-expressions">Regular expressions</h1>
+<p>A regular expression (regex or regexp) is a sequence of characters that define a search pattern. Usually such patterns are used by string-searching algorithms for "find" or "find and replace" operations on strings.The concept arose in the 1950s when the American mathematician Stephen Cole Kleene formalized the description of a regular language. The concept came into common use with Unix text-processing utilities.</p>
+<p>Regular expressions are used in search engines, search and replace dialogs of word processors and text editors, in text processing utilities. Many programming languages provide regex capabilities either built-in or via libraries.</p>
+<h2 id="grep">GREP</h2>
+<p>The ability to search through files and folders can greatly improve your productivity using Unix.</p>
+<p>One of the most popular tools for searching through text files is <code>grep</code>. The simplest use of grep requires two arguments: a string or character you are looking for and the text file to search.</p>
+<p><code>grep "[string/character]" [file]</code></p>
+<h2 id="egrep">EGREP</h2>
+<p>Regular expressions aren’t just limited to searching with characters and strings, the real power of regular expressions come from using metacharacters.  To take full advantage of all of the metacharacters we should use grep’s cousin <code>egrep</code>, which just extends grep’s capabilities. </p>
+<p><code>egrep "[regular expression]" [file]</code></p>
+<h2 id="find">FIND</h2>
+<p>If you want to find the location of a file or group of files you can use the <code>find</code> command. <code>find [Directory to start at] [argument]</code> this command has a specific structure where the first argument is the directory where you want to begin the search ( . for current directory, .. for parent director with respect to current directort), and all directories contained within that directory will also be searched. The first argument is then followed by a flag that describes the method you want to use to search. For instance the  -name flag.</p>
+<pre><code>alex@LAPTOP-B501IEC8:/home$ find . -name &quot;states.txt&quot;
+./alex/states.txt
+</code></pre>
+
+<h2 id="metacharacters">Metacharacters</h2>
+<p><code>Metacharacters</code> are characters that can be used to represent one ocurrance of any other characters.</p>
+<table>
+<thead>
+<tr>
+<th>Metacharacter</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.</code></td>
+<td>Any Character</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>Beginning of String</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>End of String</td>
+</tr>
+<tr>
+<td><code>\n</code></td>
+<td>Newline</td>
+</tr>
+</tbody>
+</table>
+<h2 id="quantifiers">Quantifiers</h2>
+<p>Besides metacharacters that can represent one character, there are also metacharacters called <code>quantifiers</code> which allow you to specify the number of times a particular regular expression should appear in a string.</p>
+<p><strong>Example:</strong>
+One of the most basic quantifiers is "+"  which represents one or more occurrences of the preceeding expression. The regular expression “s+as” means: one or more “s” followed by “as”. Let’s see if any of the state names match this expression</p>
+<table>
+<thead>
+<tr>
+<th>Metacharacter</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>+</code></td>
+<td>One or More of Previous  Character</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>Zero or More of Previous Character</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>Zero or One of Previous Character</td>
+</tr>
+<tr>
+<td><code>|</code></td>
+<td>Either the Previous or the Following Character</td>
+</tr>
+<tr>
+<td><code>{6}</code></td>
+<td>Exactly 6 of Previous Character</td>
+</tr>
+<tr>
+<td><code>{4, 6}</code></td>
+<td>Between 4 and 6 or Previous Character</td>
+</tr>
+<tr>
+<td><code>{4, }</code></td>
+<td>More than 4 of Previous Character</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> it is important to know the differnece between  * and "*", the first means all (wildcard) and the second one is a metachacaracter </p>
+<h2 id="sets">Sets</h2>
+<p>In addition to quantifiers there are also regular expressions for describing sets of characters.</p>
+<table>
+<thead>
+<tr>
+<th>Metacharacter</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\w</code></td>
+<td>A word (letters, numbers, underscores)</td>
+</tr>
+<tr>
+<td><code>\W</code></td>
+<td>Not a Word</td>
+</tr>
+<tr>
+<td><code>\d</code></td>
+<td>A Digit (Numbers)</td>
+</tr>
+<tr>
+<td><code>\D</code></td>
+<td>Not a Digit</td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>Whitespace</td>
+</tr>
+<tr>
+<td><code>\S</code></td>
+<td>Not Whitespace</td>
+</tr>
+<tr>
+<td><code>[def]</code></td>
+<td>A Set of Characters</td>
+</tr>
+<tr>
+<td><code>[^def]</code></td>
+<td>Negation of Set</td>
+</tr>
+<tr>
+<td><code>[e-q]</code></td>
+<td>A Range of Characters</td>
+</tr>
+</tbody>
+</table>
+<h2 id="wrap-up">Wrap up</h2>
+<p>We can us methcaracters to match a single character, quintifiers to match many characters and together we can build sets to match specifc patterns </p>
+<h2 id="practical-examples">Practical examples:</h2>
+<p>Given a file states.txt with all the sates of the Us we will aply some basic search:</p>
+<h2 id="character-search-example">Character search example</h2>
+<p>We wish to find all the states that start with "Miss"</p>
+<pre><code>user@desktop:~$  grep &quot;^Miss&quot; states.txt
+Mississippi
+Missouri
+</code></pre>
+
+<h2 id="quintifier-search-example">Quintifier search example</h2>
+<p>If we apply "s+as" we will get back all the states that have a pattern of One or more appearance of "s" followed by "as" [sas,ssas,sssas,...)</p>
+<pre><code>user@desktop:~$  egrep &quot;s+as&quot; states.txt
+
+Arkansas
+Kansas
+</code></pre>
+
+<p>If we apply "s*as" we will get back all the states that have a pattern of zero or more appearance of "s" followed by "as" [as,sas,ssas,sssas,...)</p>
+<pre><code>user@desktop:~$  egrep &quot;s*as&quot; states.txt
+
+Alaska
+Arkansas
+Kansas
+Massachusetts
+Nebraska
+Texas
+Wahington
+</code></pre>
+
+<h2 id="sets-search-exmaple">Sets search exmaple</h2>
+<p>Take note that the regular expression "s{2}" is equivalent to the regular expression "ss","s{3}" to "sss" and we can combine them "s{2,3}[ae]" to get ["ssa","sssa","sse","ssse"] matches </p>
+<pre><code>user@desktop:~$  egrep &quot;s{2,3}[ae]&quot; states.txt
+
+Massachusetts
+Tennesss       # matched sss due of typo in Tennessee
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

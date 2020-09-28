@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Bash Scripting - Linux tutorial</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Linux tutorial</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Tutorials <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../help/" class="dropdown-item">Self help</a>
+</li>
+                                    
+<li>
+    <a href="../reg/" class="dropdown-item">Regular Expressions</a>
+</li>
+                                    
+<li>
+    <a href="../make/" class="dropdown-item">Make Files</a>
+</li>
+                                    
+<li>
+    <a href="../custom/" class="dropdown-item">Customizing</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Bash Scripting</a>
+</li>
+                                    
+<li>
+    <a href="../ssh/" class="dropdown-item">Secure Shell</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../custom/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../ssh/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#bash-scripting" class="nav-link">Bash Scripting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#introduction-to-bash" class="nav-link">Introduction to BASH</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#file-permission" class="nav-link">File Permission</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#basic-arithmetic" class="nav-link">Basic arithmetic</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#variables" class="nav-link">Variables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#user-input" class="nav-link">User Input</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#arrays" class="nav-link">Arrays</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#conditional-expressions" class="nav-link">Conditional Expressions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#if-and-else" class="nav-link">IF and Else</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#braces" class="nav-link">Braces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#for-loop" class="nav-link">For loop</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#while-loop" class="nav-link">While loop</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#functions" class="nav-link">Functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="bash-scripting">Bash Scripting</h1>
+<h2 id="introduction-to-bash">Introduction to BASH</h2>
+<p>In a Unix like operating system, such as Linux, a shell takes input from you in the form of commands, processes it, and then gives an output. It is the interface through which a user works on the programs, commands, and scripts. A shell is accessed by a terminal which runs it.</p>
+<p>In order to visualize the shells you have available in your Linux distribrution type:</p>
+<pre><code class="bash">user@desktop:~$ cat ~/../../etc/shells
+# /etc/shells: valid login shells
+/bin/sh
+/bin/dash
+/bin/bash
+/bin/rbash
+/usr/bin/tmux
+/usr/bin/screen
+</code></pre>
+
+<p>In this tutorial we will use the born again shell (bash). In order to see the path of your shell run the following command:</p>
+<pre><code class="bash">user@desktop:~$ which bash
+/bin/bash
+</code></pre>
+
+<p>In order to run a program with bash we will have to add this path in every script  we creat (take in mind that the file has to end in .sh) :</p>
+<pre><code class="bash">user@desktop:~$ nano filename.sh 
+
+#! /bin/bash             # Add line
+echo &quot;HELLO BASH LINUX&quot;  # Add line
+</code></pre>
+
+<p><br></p>
+<h2 id="file-permission">File Permission</h2>
+<p>You can check the permission of files and directories with <code>ls -l</code> </p>
+<pre><code class="bash">alex@LAPTOP-B501IEC8:~$ ls -l
+total 0
+-rw-r--r-- 1 alex alex  162 Sep 23 23:57 01-What-is-Unix.md
+drwxrwxrwx 1 alex alex 4096 Sep 24 16:50 BMSIS
+....
+</code></pre>
+
+<p>The left column of this table contains a series of individual characters and dashes. The first hyphen (-) signifies that each of the entries in this list are files. If any of them were directories then instead of a hyphen there would be a d. Excluding the first hyphen we have the following string: rw-rw-r--. This string reflects the permissions that are set up for this file. There are three permissions that we can grant: 
+<ul>
+<li><code>r</code> Read file</li>
+<li><code>w</code> Write file</li>
+<li><code>x</code> Execute file</li>
+</ul></p>
+<p>These three permissions can be granted on three different levels of access which correspond to each of the three sets of rwx in the permissions string: </p>
+<ol>
+<li>Owner of file</li>
+<li>Group</li>
+<li>Everyone else </li>
+</ol>
+
+<p>Levels of permmision:</p>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u</td>
+<td>The owner of the file</td>
+</tr>
+<tr>
+<td>g</td>
+<td>The group that the file belongs to</td>
+</tr>
+<tr>
+<td>o</td>
+<td>Everyone else</td>
+</tr>
+<tr>
+<td>a</td>
+<td>Everyone above</td>
+</tr>
+</tbody>
+</table>
+<p>Option: </p>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>Add permission</td>
+</tr>
+<tr>
+<td>-</td>
+<td>Remove permission</td>
+</tr>
+<tr>
+<td>=</td>
+<td>Set permission</td>
+</tr>
+</tbody>
+</table>
+<p>Permission:</p>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r</td>
+<td>Read a file</td>
+</tr>
+<tr>
+<td>w</td>
+<td>Write to or edit a file</td>
+</tr>
+<tr>
+<td>x</td>
+<td>Execute a file</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example">Example:</h3>
+<p>If we want to make a file executable for the owner  of this file (us). We can combine u, +, and x in order make the file  executable. </p>
+<pre><code class="bash">user@desktop:~$ chmod u+x [file]
+</code></pre>
+
+<p><br></p>
+<h2 id="basic-arithmetic">Basic arithmetic</h2>
+<p>The Bash programming language can do very basic arithmetic, we have two options:</p>
+<h3 id="expr">expr</h3>
+<p>The expr command can be used to evaluate Bash expressions. An expression is just a valid string of Bash code that, when run, produces a result. The arithmetic operators that you’re already familiar with for addition (+), subtraction (-), and multiplication (*) work like you would expect them to. </p>
+<pre><code class="bash">user@desktop:~$ nano math.sh
+#!/usr/bin/env bash
+# File: math.sh
+expr 5 + 2
+expr 5 - 2
+expr 5 \* 2
+expr 5 / 2
+
+user@desktop:~$ bash math.sh
+7
+3
+10
+2
+</code></pre>
+
+<p>Notice that when doing multiplication you need to escape the star character, otherwise Bash thinks you’re trying to create a regular expression! The division operator (/) does not work as you might expect it to since 5 / 2 = 2.5. Bash does integer division, which means that the result of dividing one number by another is always rounded down to the nearest integer.</p>
+<h3 id="bench-calculator">Bench Calculator</h3>
+<p>If you want to do more complex math, for example math with fractions and numbers with decimals then us echo and the <strong>b</strong>ench <strong>c</strong>alculator program called <code>bc</code>.</p>
+<pre><code class="bash">user@desktop:~$ nano math2.sh
+#!/usr/bin/env bash
+# File: math.sh
+echo &quot;22 / 7&quot; | bc -l
+echo &quot;4.2 * 9.15&quot; | bc -l
+echo &quot;(6.5 / 0.5) + (6 * 2.2)&quot; | bc -l
+
+user@desktop:~$ bash math2.sh
+3.14285714285714285714
+38.430
+26.20000000000000000000
+</code></pre>
+
+<p><br></p>
+<h2 id="variables">Variables</h2>
+<p>In Bash you can store data in variables. Previously we have discussed environmental variables that are set by your operating system. You can also create your own variables. Make sure you follow these rules when you’re naming variables:</p>
+<ul>
+<li>Every character should be lowercase.</li>
+<li>The variable name should start with a letter.</li>
+<li>The name should only contain alphanumeric characters and underscores.</li>
+<li>Words in the name should be separated by underscores.</li>
+</ul>
+<p>You can assign data to a variable using the equals sign (=). The data you store in a variable can either be a string or a number. No spaces on either side of the equals sign are allowed.</p>
+<pre><code class="bash">a=5
+</code></pre>
+
+<p>In order to print the data in a variable, we can use echo. When you want to retrieve the value of a variable you must use the dollar sign ($) before the name of the variable.</p>
+<pre><code class="bash">user@desktop:~$ a=5
+user@desktop:~$ echo $a
+5
+</code></pre>
+
+<p>You can modify the value of a variable using arithmetic operators by using the <code>let</code> command:</p>
+<pre><code class="bash">user@desktop:~$ let a=$a+1
+user@desktop:~$ echo $a
+6
+</code></pre>
+
+<p>Occasionally you might want to run a command like you would on the command line and store the result of that command in a variable. We can do this by wrapping the command in a dollar sign and parentheses ($( )) around a command. This syntax is called command substitution. The command is executed and then gets replaced by the string that resulted from running the command. For example if we wanted to store the number of lines in math.sh</p>
+<pre><code class="bash">user@desktop:~$ math_lines=$(cat math.sh | wc -l)
+user@desktop:~$ echo $math_lines
+7
+</code></pre>
+
+<p>Variable names with a dollar sign can also be used inside other strings in order to insert the value of the variable into the string:</p>
+<pre><code class="bash">user@desktop:~$ echo &quot;The file math.sh has $math_lines lines&quot;
+The file math.sh has 6 lines
+</code></pre>
+
+<p>When writing a Bash script, the first argument to your script is stored in $1, the second argument is stored in $2, etc, etc. An array of all of the arguments passed to your script is stored in $@, and we’ll discuss how to handle arrays later on</p>
+<pre><code class="bash">user@desktop:~$ nano free.sh
+echo  &quot;First variable $1 , second variable $2 , List of variables $@&quot;
+
+user@desktop:~$  bash free.sh blue red
+First variable blue , second variable red , List of variables blue red
+</code></pre>
+
+<h2 id="user-input">User Input</h2>
+<p>You can ask the users to type in a string on the command line by temporarily stopping the execution of your program using the <code>read</code> command.</p>
+<pre><code class="bash">user@desktop:~$ nano read_example.sh
+
+echo &quot;Type in a string and then press Enter:&quot;
+read response
+echo &quot;You entered: $response&quot;
+
+user@desktop:~$ bash read_example.sh
+Type in a string and then press Enter
+Hello world
+You entered: Hello world
+</code></pre>
+
+<p><br></p>
+<h2 id="arrays">Arrays</h2>
+<p>Arrays in Bash are ordered lists of values. You can create a list from scratch by assigning it to a variable name. Lists are created with parentheses () with a space separating each element in the list. Let’s make a list of the plagues of Egypt:</p>
+<pre><code class="bash">user@desktop:~$  plagues=(blood frogs lice flies sickness boils hail locusts darkness death)
+</code></pre>
+
+<p>To retrieve the array you need to use parameter expansion, which involves the dollar sign and curly brackets (${ }). The positions of the elements in the array are numbered starting from zero. To get the first element of this array use ${plagues[0]} like so</p>
+<pre><code class="bash">user@desktop:~$  echo ${plagues[0]}
+
+blood
+</code></pre>
+
+<p>To get all of the elements of plagues use a star (*) between the square brackets:</p>
+<pre><code class="bash">user@desktop:~$  echo ${plagues[*]}
+
+blood frogs lice flies sickness boils hail locusts darkness death
+</code></pre>
+
+<p>Other useful things:</p>
+<p>You can find the length of an array using the pound sign (#)</p>
+<pre><code class="bash">user@desktop:~$ echo ${#plagues[*]}
+
+10
+</code></pre>
+
+<p>You can use the plus-equals operator (+=) to add an array onto the end of an array array:</p>
+<pre><code class="bash">user@desktop:~$  dwarfs=(grumpy sleepy sneezy doc) # Command
+user@desktop:~$ echo ${dwarfs[*]}                  # Command
+grumpy sleepy sneezy doc                           # Output
+user@desktop:~$ dwarfs+=(bashful dopey happy)      # Command
+user@desktop:~$ echo ${dwarfs[*]}                  # Output
+grumpy sleepy sneezy doc bashful dopey happy       # Command
+</code></pre>
+
+<p><br>
+<br></p>
+<h2 id="conditional-expressions">Conditional Expressions</h2>
+<p>Conditional execution allows you to control the circumstances where certain programs are executed based on whether those programs succeed or fail, but you can also construct conditional expressions which are logical statements that are either equivalent to true or false. Conditional expressions either compare two values, or they ask a question about one value. Conditional expressions are always between double brackets ([[ ]]), and they either use logical flags or logical operators.</p>
+<table>
+<thead>
+<tr>
+<th>Logical Flag</th>
+<th>Meaning</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-gt</td>
+<td>Greater Than</td>
+<td>[[ $planets -gt 8 ]]</td>
+</tr>
+<tr>
+<td>-ge</td>
+<td>Greater Than or Equal To</td>
+<td>[[ $votes -ge 270 ]]</td>
+</tr>
+<tr>
+<td>-eq</td>
+<td>Equal</td>
+<td>[[ $fingers -eq 10 ]]</td>
+</tr>
+<tr>
+<td>-ne</td>
+<td>Not Equal</td>
+<td>[[ $pages -ne 0 ]]</td>
+</tr>
+<tr>
+<td>-le</td>
+<td>Less Than or Equal To</td>
+<td>[[ $candles -le 9 ]]</td>
+</tr>
+<tr>
+<td>-lt</td>
+<td>Less Than</td>
+<td>[[ $wives -lt 2 ]]</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>A File Exists</td>
+<td>[[ -e $taxes_2016 ]]</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>A Directory Exists</td>
+<td>[[ -d $photos ]]</td>
+</tr>
+<tr>
+<td>-z</td>
+<td>Length of String is Zero</td>
+<td>[[ -z $name ]]</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>Length of String is Non-Zero</td>
+<td>[[ -n $name ]]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<pre><code class="bash">[[ 3 -gt 4 ]]
+flase
+</code></pre>
+
+<p>In addition to logical flags there are also logical operators. One of the most useful logical operators is the regex match operator =~. The regex match operator compares a string to a regular expression and if the string is a match for the regex then the expression is equivalent to true, otherwise it’s equivalent to false. Let’s test this operator a couple different ways:</p>
+<pre><code class="bash">[[ rhythms =~ [aeiou] ]] &amp;&amp; echo t || echo f
+my_name=sean
+[[ $my_name =~ ^s.+n$ ]] &amp;&amp; echo t || echo f
+
+## f
+## t
+</code></pre>
+
+<p>Here’s a table of some of the useful logical operators in case you need to reference how they’re used later:</p>
+<table>
+<thead>
+<tr>
+<th>Logical Operator</th>
+<th>Meaning</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>=~</td>
+<td>Matches Regular Expression</td>
+<td>[[ $consonants =~ [aeiou] ]]</td>
+</tr>
+<tr>
+<td>=</td>
+<td>String Equal To</td>
+<td>[[ $password = "pegasus" ]]</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>String Not Equal To</td>
+<td>[[ $fruit != "banana" ]]</td>
+</tr>
+<tr>
+<td>!</td>
+<td>Not</td>
+<td>[[ ! "apple" =~ ^b ]]</td>
+</tr>
+</tbody>
+</table>
+<p><br>
+<br></p>
+<h2 id="if-and-else">IF and Else</h2>
+<p>Conditional expressions are powerful because you can use them to control how a Bash program that you’re writing is executed. One of the fundamental constructs in Bash programming is the IF statement. Code written inside of an IF statement is only executed if a certain condition is true, otherwise the code is skipped. Let’s write a small program with an IF statement:</p>
+<pre><code class="bash">#!/usr/bin/env bash
+# File: condexif.sh
+
+if [[ $1 -gt 3 ]] &amp;&amp; [[ $1 -lt 7 ]]
+then
+  echo &quot;$1 is between 3 and 7&quot;
+elif [[ $1 =~ &quot;Jeff&quot; ]] || [[ $1 =~ &quot;Roger&quot; ]] || [[ $1 =~ &quot;Brian&quot; ]]
+then
+  echo &quot;$1 works in the Data Science Lab&quot;
+else
+  echo &quot;You entered: $1, not what I was looking for.&quot;
+fi
+</code></pre>
+
+<p><strong>Notes:</strong></p>
+<ul>
+<li>
+<p>It is important to put the if evaluation  inside brackets and leave space among  the expresison.</p>
+</li>
+<li>
+<p>After the if condition it is important to specify the behavior with the keyword <strong>then</strong></p>
+</li>
+<li>
+<p>In order to close the loop write <strong>if</strong></p>
+</li>
+<li>
+<p>Conditional execution uses two operators: AND (&amp;&amp;) and OR (||) which you can use to control what command get executed based on their exit status.</p>
+</li>
+</ul>
+<p><br>
+<br></p>
+<h2 id="braces">Braces</h2>
+<p>Bash has a very handy tool for creating strings out of sequences called brace expansion. Brace expansion uses the curly brackets and two periods ({ .. }) to create a sequence of letters or numbers. For example to create a string with all of the numbers between zero and nine you could do the following:</p>
+<pre><code class="bash">user@desktop:~$  echo {0..9}
+
+0 1 2 3 4 5 6 7 8 9
+</code></pre>
+
+<p>You can put strings on either side of the curly brackets and they’ll be “pasted” onto the corresponding end of the sequence:</p>
+<pre><code class="bash">user@desktop:~$ echo a{0..4}
+user@desktop:~$ echo b{0..4}c
+
+a0 a1 a2 a3 a4
+b0c b1c b2c b3c b4c
+</code></pre>
+
+<p>You can also combine sequences so that two or more sequences are pasted together:</p>
+<pre><code class="bash">user@desktop:~$  echo {1..3}{A..C}
+
+1A 1B 1C 2A 2B 2C 3A 3B 3C
+</code></pre>
+
+<p>If you want to use variables in order to define a sequence you need to use the eval command in order to create the sequence:</p>
+<pre><code class="bash">user@desktop:~$  start=4
+user@desktop:~$  end=9
+user@desktop:~$  echo {$start..$end}
+{4..9}
+user@desktop:~$  eval echo {$start..$end}
+4 5 6 7 8 9
+</code></pre>
+
+<p>You can combine sequences with a comma between brackets ({,}):</p>
+<pre><code class="bash">user@desktop:~$ echo {{1..3},{a..c}}
+1 2 3 a b c
+</code></pre>
+
+<p><br>
+<br></p>
+<h2 id="for-loop">For loop</h2>
+<p>FOR loops iterate through every element of a sequence that you specify. Let’s take a look at a small example FOR loop:</p>
+<pre><code class="bash">#!/usr/bin/env bash
+# File: forloop.sh
+
+echo &quot;Before Loop&quot;
+
+for i in {1..3}
+do
+    echo &quot;i is equal to $i&quot;
+done
+
+echo &quot;After Loop&quot;
+
+</code></pre>
+
+<p><strong>Notes:</strong></p>
+<ul>
+<li>After giving the breace to iterate, specify the bahavior after <strong>do</strong></li>
+<li>The closing keyword for for loop is not rof, but <strong>done</strong></li>
+</ul>
+<h2 id="while-loop">While loop</h2>
+<p>The WHILE loop begins first with the while keyword followed by a conditional expression. As long as the conditional expression is equivalent to true when an iteration of the loop begins, then the code within the WHILE loop will continue to be executed.</p>
+<pre><code class="bash">#!/usr/bin/env bash
+# File: whileloop.sh
+
+count=3
+
+while [[ $count -gt 0 ]]
+do
+  echo &quot;count is equal to $count&quot;
+  let count=$count-1
+done
+</code></pre>
+
+<h2 id="functions">Functions</h2>
+<p>A function is a small piece of code that has a name. Writing functions allows us to re-use the same code multiple times across programs. Functions have the the following syntax:</p>
+<pre><code class="bash">function [name of function] {
+  # code here
+}
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

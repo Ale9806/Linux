@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>Linux tutorial</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body class="homepage">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href=".">Linux tutorial</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem active">
+                                <a href="." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Tutorials <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="help/" class="dropdown-item">Self help</a>
+</li>
+                                    
+<li>
+    <a href="reg/" class="dropdown-item">Regular Expressions</a>
+</li>
+                                    
+<li>
+    <a href="make/" class="dropdown-item">Make Files</a>
+</li>
+                                    
+<li>
+    <a href="custom/" class="dropdown-item">Customizing</a>
+</li>
+                                    
+<li>
+    <a href="bash/" class="dropdown-item">Bash Scripting</a>
+</li>
+                                    
+<li>
+    <a href="ssh/" class="dropdown-item">Secure Shell</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="help/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#linux-tutorial" class="nav-link">Linux Tutorial</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#basic-commands-overview" class="nav-link">Basic commands Overview:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#managing-files-and-dirs" class="nav-link">Managing files and dirs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#operating-with-file-content" class="nav-link">Operating with file content</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#additional-commands" class="nav-link">ADDITIONAL COMMANDS:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="linux-tutorial">Linux Tutorial</h1>
+<p>Unix  is a family of multitasking, multiuser computer operating systems that derive from the original AT&amp;T Unix, development starting in the 1970s at the Bell Labs research center by Ken Thompson, Dennis Ritchie, and others.</p>
+<p>Linux is a family of open source Unix-like operating systems based on the Linux kernel, an operating system kernel first released on September 17, 1991, by Linus Torvalds. Linux is typically packaged in a Linux distribution.</p>
+<p><strong>In simpler words:</strong>
+Linux is nothing but a UNIX clone which is written Linus Torvalds from scratch with the help of some hackers across the globe. Unix and Unix-like operating systems are a family of computer operating systems that derive from the original Unix System from Bell Labs which can be traced back to 1965. Linux is the most popular variant and there comes in a number of different distributions.</p>
+<h2 id="basic-commands-overview">Basic commands Overview:</h2>
+<p>When working with linux we will wok on a  terminal. In order to acomplish something we will need to use some basic commnads:</p>
+<h2 id="managing-files-and-dirs">Managing files and dirs</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pwd</code></td>
+<td>Print working directory</td>
+</tr>
+<tr>
+<td><code>ls</code></td>
+<td>Lists files in Directory</td>
+</tr>
+<tr>
+<td><code>ls -l</code></td>
+<td>Lists files in Directory with permission information</td>
+</tr>
+<tr>
+<td><code>ls -a</code></td>
+<td>Lists all files including those hidden</td>
+</tr>
+<tr>
+<td><code>cd</code></td>
+<td>Change Directory</td>
+</tr>
+<tr>
+<td><code>echo</code></td>
+<td>Prints messege in terminal</td>
+</tr>
+<tr>
+<td><code>touch</code></td>
+<td>Create an empty file</td>
+</tr>
+<tr>
+<td><code>mkdir</code></td>
+<td>Create new Directory</td>
+</tr>
+<tr>
+<td><code>rmdir</code></td>
+<td>Remove empty Directory</td>
+</tr>
+<tr>
+<td><code>cp</code></td>
+<td>Coppy file</td>
+</tr>
+<tr>
+<td><code>mv</code></td>
+<td>Move file (also renames files)</td>
+</tr>
+<tr>
+<td><code>chmod</code></td>
+<td>Change permissions of a file</td>
+</tr>
+</tbody>
+</table>
+<p><br>
+<br></p>
+<h2 id="operating-with-file-content">Operating with file content</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>file</code>  file-name</td>
+<td>prints tpye of given file</td>
+</tr>
+<tr>
+<td><code>cat</code>   file-name</td>
+<td>Show contents of files</td>
+</tr>
+<tr>
+<td><code>wc</code>     file-name</td>
+<td>Counts the amount of characters, words, and lines in a file</td>
+</tr>
+<tr>
+<td><code>head</code>   file-name</td>
+<td>Show the first 10 lines of a file</td>
+</tr>
+<tr>
+<td><code>tail</code>   file-name</td>
+<td>Show the last 10 lines of a file</td>
+</tr>
+<tr>
+<td><code>grep</code>  file-name</td>
+<td>Find pattern in file</td>
+</tr>
+<tr>
+<td><code>cut</code>   file-name</td>
+<td>Extracts a given number of characters or columns from a file</td>
+</tr>
+<tr>
+<td><code>grep</code> 'pattern'  file-name</td>
+<td>Extracts patterns from file</td>
+</tr>
+</tbody>
+</table>
+<p><br>
+<br></p>
+<h2 id="additional-commands">ADDITIONAL COMMANDS:</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>date</code></td>
+<td>Prints the current date</td>
+</tr>
+<tr>
+<td><code>Who</code></td>
+<td>Prints the list of users currently logged into the computer</td>
+</tr>
+<tr>
+<td><code>man</code> command</td>
+<td>Shows the manual page of the given command (press "q" to quit)</td>
+</tr>
+<tr>
+<td><code>uptime</code></td>
+<td>Shows how long the computer has been running</td>
+</tr>
+<tr>
+<td><code>free</code>   file-name</td>
+<td>Shows the amount of unused memory on the current system</td>
+</tr>
+</tbody>
+</table>
+<h3 id="signals">SIGNALS:</h3>
+<p>Singals are tokens that allows us to control the behaviour of a program</p>
+<h6 id="special-signals">SPECIAL SIGNALS :</h6>
+<p>kill is a specila signal, in has to be run from another therminal, therefore
+you need the Process Identifier (PID) to be able to stop the process:
+To find the PID you can use the <code>ps</code> comand 
+<br>
+<br></p>
+<h3 id="signals-processes">SIGNALS + PROCESSES:</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ps</code></td>
+<td>Lists the processes executing in the current terminal for the current user</td>
+</tr>
+<tr>
+<td><code>ps ax</code></td>
+<td>Lists all processes currently executing for all users</td>
+</tr>
+<tr>
+<td><code>ps e</code></td>
+<td>Shows the environment for the processes listed</td>
+</tr>
+<tr>
+<td><code>kill PID</code></td>
+<td>Sends the SIGTERM signal to the process identified by PID (run this from another terminal)</td>
+</tr>
+<tr>
+<td><code>ctrl + c</code></td>
+<td>Termiantes a process properly</td>
+</tr>
+<tr>
+<td><code>ctrl + z</code></td>
+<td>Stop a process</td>
+</tr>
+<tr>
+<td><code>fg</code></td>
+<td>causes a job that was stopped or in the background to return to the foreground</td>
+</tr>
+<tr>
+<td><code>bg</code></td>
+<td>causes a job that was stopped to go to the background</td>
+</tr>
+<tr>
+<td><code>jobs</code></td>
+<td>lists the jobs currently running or stopped</td>
+</tr>
+<tr>
+<td><code>top</code></td>
+<td>shows the processes currently using the most CPU time (press "q" to quit)</td>
+</tr>
+</tbody>
+</table>
+<p><br>
+<br></p>
+<h3 id="chmod-options">Chmod options:</h3>
+<p><ul>
+  <li> chmod -x : Make file executable </li>
+  <li> chmod -r : Make file readable </li>
+  <li> chmod -w : Make file writable  </li>
+   <li> chmod -rwx : All of the above  </li>
+</ul></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+        <script src="search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.1.2
+Build Date UTC : 2020-09-28 01:04:42.047277+00:00
+-->
