@@ -1,0 +1,10 @@
+site_name: Linux tutorial
+nav:
+  - Home: index.md
+  - Tutorials: 
+    - "Self help": help.md
+    - "Regular Expressions": reg.md
+    - "Make Files": make.md
+    - "Customizing": custom.md
+    - "Bash Scripting": bash.md
+    - "Secure Shell": ssh.md
